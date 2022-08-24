@@ -1,0 +1,62 @@
+# Lazypipe v2.0 config
+# can include env vars
+
+# SNAKEMAKE PARAMETERS 
+datain:
+    sample2:  /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/fasta_R1.fq.gz
+ 
+
+    #clinical: data/mysample/mysample_R1.fastq
+    
+hostgen_sm:             
+    sample2:  "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/GCA_000001405.29_GRCh38.p14_genomic.fna.gz"   # H. sapiens
+ 
+
+virosaurus_fasta: "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/virosaurus_fasta/virosaurus90_vertebrate-20200330.fas.gz"
+
+hostgen_taxid_sm:                            # assign reads mapped to hostgen to this taxid in abundance est
+    sample2:            9606
+
+threads_max:        30
+blastv:             0
+blastu:             0
+
+
+# GENERAL PARAMETERS
+R_call:             "Rscript --no-save"
+hostgen:            0
+hostgen_taxid:      0
+hostgen_flt_th:     50
+min_gene_length:    72
+min_sans_bits:      120
+min_blastp_bits:    120
+min_cent_bits:      60
+numth:              8
+realign_read_th:    40
+tail:               0           # Remove taxa that correspond to this percentile in abundance estimation. Set to zero to keep all predictions.
+cont_score_tail:    5           # Remove taxa from contig that correspond to this percentile. Reduces noise in abundance estimation.
+trimm_par:          "ILLUMINACLIP:$TM/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
+fastp_par:          "-q 15 -u 40 -l 36 --detect_adapter_for_pe --cut_right --cut_window_size 4 --cut_mean_quality 15 --correction"
+wrkdir:             "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data"
+res:                "results"   # results directory
+logs:               "logs"      # logs directory
+
+
+# DEFAULT COMMAND LINE OPTIONS
+pre:                "fastp"     # preprocess: fastp/trimm/none
+ass:                "megahit"   # assembler: megahit/spades
+ann:                "sans"      # homology search engine: blastp/sans/centerifuge
+weights:            "bitscore2" # model for read abundance estimation
+
+
+# FILES & DATABASES
+blastp_db:             "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/blastdb/nr"
+blastn_vi_db:          "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/blast/nt_2021_12_vi"
+blastn_vi_db_url:      "https://zenodo.org/record/6047010/files/nt_2020_12_vi_blastn.tar.gz"
+centrifuge_db:         "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/centrifuge/nt_2021_12_habv"
+centrifuge_db_url:     0 # no direct URL available
+taxonomy:              "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/taxonomy"
+taxonomy_update:       0 # 1 => update, 0 => don't update
+taxonomy_update_time:  50 # in days
+taxonomy_url:          "ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz"
+

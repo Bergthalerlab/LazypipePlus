@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in line 41 of /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py:
+Wildcards in input files cannot be determined from output files:
+'sample'

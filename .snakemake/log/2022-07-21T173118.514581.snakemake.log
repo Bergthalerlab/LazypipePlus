@@ -1,0 +1,56 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	assemble
+	1	create_reports
+	1	detect_orfs
+	1	filter_hostgen
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	prepro_reads
+	1	qc_plots
+	1	realign_reads
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	14
+
+[Thu Jul 21 17:31:18 2022]
+rule prepro_reads:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379/TW02_1_S121379_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379/TW02_1_S121379_ecco_1.fq.gz
+    output: results/sample1/trimmed_paired1.fq, results/sample1/trimmed_paired2.fq, results/sample1/trimmed_unpaired1.fq, results/sample1/trimmed_unpaired2.fq
+    log: logs/sample1/prepro_reads.log
+    jobid: 12
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 12 with external jobid 'Submitted batch job 481141'.
+[Thu Jul 21 17:31:38 2022]
+Finished job 12.
+1 of 14 steps (7%) done
+
+[Thu Jul 21 17:31:38 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample1/trimmed_paired1.fq, results/sample1/trimmed_paired2.fq
+    output: results/sample1/hostgen.sam, results/sample1/hostgen.sam.flt, results/sample1/hostgen.bam, results/sample1/hostgen.sorted.bam, results/sample1/hostgen.readids, results/sample1/trimmed_paired1_hostflt.fq, results/sample1/trimmed_paired2_hostflt.fq
+    log: logs/sample1/filter_hostgen.log
+    jobid: 11
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 11 with external jobid 'Submitted batch job 481142'.
+[Thu Jul 21 17:34:58 2022]
+Error in rule filter_hostgen:
+    jobid: 11
+    output: results/sample1/hostgen.sam, results/sample1/hostgen.sam.flt, results/sample1/hostgen.bam, results/sample1/hostgen.sorted.bam, results/sample1/hostgen.readids, results/sample1/trimmed_paired1_hostflt.fq, results/sample1/trimmed_paired2_hostflt.fq
+    log: logs/sample1/filter_hostgen.log (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 481142
+
+Error executing rule filter_hostgen on cluster (jobid: 11, external: Submitted batch job 481142, jobscript: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/tmp.g3ozw6xm/snakejob.filter_hostgen.11.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-21T173118.514581.snakemake.log

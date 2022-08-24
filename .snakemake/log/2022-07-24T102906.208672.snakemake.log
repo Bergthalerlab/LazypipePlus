@@ -1,0 +1,84 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	3	assemble
+	3	create_reports
+	3	detect_orfs
+	3	filter_hostgen
+	3	format_hsearch_main
+	3	krona_graph
+	3	pack
+	2	prepro_reads
+	3	qc_plots
+	3	realign_reads
+	3	sans_orfs
+	3	stats
+	3	summary_excel
+	39
+
+[Sun Jul 24 10:29:06 2022]
+rule prepro_reads:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_3_S121375/TW02_3_S121375_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_3_S121375/TW02_3_S121375_ecco_1.fq.gz
+    output: results/sample3/trimmed_paired1.fq, results/sample3/trimmed_paired2.fq, results/sample3/trimmed_unpaired1.fq, results/sample3/trimmed_unpaired2.fq
+    log: logs/sample3/prepro_reads.log
+    jobid: 32
+    wildcards: sample=sample3
+    threads: 2
+
+Submitted job 32 with external jobid 'Submitted batch job 482445'.
+
+[Sun Jul 24 10:29:06 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq
+    output: results/sample2/hostgen.sam, results/sample2/hostgen.sam.flt, results/sample2/hostgen.bam, results/sample2/hostgen.sorted.bam, results/sample2/hostgen.readids, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    log: logs/sample2/filter_hostgen.log
+    jobid: 27
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 27 with external jobid 'Submitted batch job 482446'.
+
+[Sun Jul 24 10:29:06 2022]
+rule prepro_reads:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_4_S121378/TW02_4_S121378_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_4_S121378/TW02_4_S121378_ecco_1.fq.gz
+    output: results/sample4/trimmed_paired1.fq, results/sample4/trimmed_paired2.fq, results/sample4/trimmed_unpaired1.fq, results/sample4/trimmed_unpaired2.fq
+    log: logs/sample4/prepro_reads.log
+    jobid: 36
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 36 with external jobid 'Submitted batch job 482447'.
+[Sun Jul 24 10:29:26 2022]
+Finished job 32.
+1 of 39 steps (3%) done
+
+[Sun Jul 24 10:29:26 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample3/trimmed_paired1.fq, results/sample3/trimmed_paired2.fq
+    output: results/sample3/hostgen.sam, results/sample3/hostgen.sam.flt, results/sample3/hostgen.bam, results/sample3/hostgen.sorted.bam, results/sample3/hostgen.readids, results/sample3/trimmed_paired1_hostflt.fq, results/sample3/trimmed_paired2_hostflt.fq
+    log: logs/sample3/filter_hostgen.log
+    jobid: 31
+    wildcards: sample=sample3
+    threads: 2
+
+[Sun Jul 24 10:29:26 2022]
+Finished job 36.
+2 of 39 steps (5%) done
+Submitted job 31 with external jobid 'Submitted batch job 482448'.
+
+[Sun Jul 24 10:29:26 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample4/trimmed_paired1.fq, results/sample4/trimmed_paired2.fq
+    output: results/sample4/hostgen.sam, results/sample4/hostgen.sam.flt, results/sample4/hostgen.bam, results/sample4/hostgen.sorted.bam, results/sample4/hostgen.readids, results/sample4/trimmed_paired1_hostflt.fq, results/sample4/trimmed_paired2_hostflt.fq
+    log: logs/sample4/filter_hostgen.log
+    jobid: 35
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 35 with external jobid 'Submitted batch job 482449'.
+Terminating processes on user request, this might take some time.
+Will exit after finishing currently running jobs.
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-24T102906.208672.snakemake.log

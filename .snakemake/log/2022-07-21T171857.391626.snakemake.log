@@ -1,0 +1,10 @@
+Building DAG of jobs...
+File path /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R1.fastq.gz contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R2.fastq.gz contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R1.fastq.gz contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R1.fastq.gz contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+File path /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R2.fastq.gz contains double '/'. This is likely unintended. It can also lead to inconsistent results of the file-matching approach used by Snakemake.
+MissingInputException in line 45 of /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/Snakefile:
+Missing input files for rule prepro_reads:
+/nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R1.fastq.gz
+/nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379//S_14C_S105828_R2.fastq.gz

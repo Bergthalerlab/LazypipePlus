@@ -1,0 +1,89 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	assemble
+	1	create_reports
+	1	detect_orfs
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	qc_plots
+	1	realign_reads
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	12
+
+[Thu Jul 21 18:49:31 2022]
+rule assemble:
+    input: results/sample1/trimmed_paired1_hostflt.fq, results/sample1/trimmed_paired2_hostflt.fq
+    output: results/sample1/assembler_out, results/sample1/contigs.fa
+    log: logs/sample1/assemble.log
+    jobid: 5
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 5 with external jobid 'Submitted batch job 481147'.
+[Thu Jul 21 18:57:11 2022]
+Finished job 5.
+1 of 12 steps (8%) done
+
+[Thu Jul 21 18:57:11 2022]
+rule detect_orfs:
+    input: results/sample1/contigs.fa
+    output: results/sample1/ORFs.raw, results/sample1/ORFs.gtf, results/sample1/ORFs.nt.fa, results/sample1/ORFs.aa.fa
+    log: logs/sample1/detect_orfs.log
+    jobid: 6
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 6 with external jobid 'Submitted batch job 481162'.
+
+[Thu Jul 21 18:57:11 2022]
+rule realign_reads:
+    input: results/sample1/contigs.fa, results/sample1/trimmed_paired1_hostflt.fq, results/sample1/trimmed_paired2_hostflt.fq
+    output: results/sample1/contigs.bwa.sam, results/sample1/contigs.top.bam, results/sample1/contigs.idxstats, results/sample1/readid_contigid.tsv
+    log: logs/sample1/realign_reads.log
+    jobid: 10
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 10 with external jobid 'Submitted batch job 481163'.
+Removing temporary output file results/sample1/ORFs.raw.
+[Thu Jul 21 18:57:41 2022]
+Finished job 6.
+2 of 12 steps (17%) done
+
+[Thu Jul 21 18:57:41 2022]
+rule sans_orfs:
+    input: results/sample1/ORFs.aa.fa
+    output: results/sample1/dbhits.sans.tsv
+    log: logs/sample1/sans_orfs.log
+    jobid: 13
+    wildcards: sample=sample1
+    threads: 2
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample1/ORFs.aa.fa -o results/sample1/dbhits.sans.tsv &> logs/sample1/sans_orfs.log
+Submitted job 13 with external jobid 'Submitted batch job 481164'.
+[Thu Jul 21 18:58:11 2022]
+Error in rule sans_orfs:
+    jobid: 13
+    output: results/sample1/dbhits.sans.tsv
+    log: logs/sample1/sans_orfs.log (check log file(s) for error message)
+    shell:
+        python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample1/ORFs.aa.fa -o results/sample1/dbhits.sans.tsv &> logs/sample1/sans_orfs.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 481164
+
+Error executing rule sans_orfs on cluster (jobid: 13, external: Submitted batch job 481164, jobscript: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/tmp.nw48g80i/snakejob.sans_orfs.13.sh). For error details see the cluster log and the log files of the involved rule(s).
+Removing temporary output file results/sample1/contigs.bwa.sam.
+Removing temporary output file results/sample1/contigs.top.bam.
+[Thu Jul 21 18:59:41 2022]
+Finished job 10.
+3 of 12 steps (25%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-21T184930.954964.snakemake.log

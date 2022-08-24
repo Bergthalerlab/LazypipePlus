@@ -1,0 +1,93 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	create_reports
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	qc_plots
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	9
+
+[Thu Jul 21 19:07:16 2022]
+rule sans_orfs:
+    input: results/sample1/ORFs.aa.fa
+    output: results/sample1/dbhits.sans.tsv
+    log: logs/sample1/sans_orfs.log
+    jobid: 13
+    wildcards: sample=sample1
+    threads: 2
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample1/ORFs.aa.fa -o results/sample1/dbhits.sans.tsv &> logs/sample1/sans_orfs.log
+Submitted job 13 with external jobid 'Submitted batch job 481165'.
+
+[Thu Jul 21 19:07:16 2022]
+rule stats:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379/TW02_1_S121379_ecco_1.fq.gz, results/sample1/trimmed_paired1.fq, results/sample1/trimmed_paired1_hostflt.fq, results/sample1/contigs.fa, results/sample1/contigs.idxstats, results/sample1/ORFs.nt.fa
+    output: results/sample1/assembly.stats.tsv
+    log: logs/sample1/stats.log
+    jobid: 8
+    wildcards: sample=sample1
+
+Submitted job 8 with external jobid 'Submitted batch job 481166'.
+[Thu Jul 21 19:07:46 2022]
+Finished job 8.
+1 of 9 steps (11%) done
+
+[Thu Jul 21 19:07:46 2022]
+rule qc_plots:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379/TW02_1_S121379_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_1_S121379/TW02_1_S121379_ecco_1.fq.gz, results/sample1/contigs.fa, results/sample1/assembly.stats.tsv
+    output: results/sample1/r1.readlen, results/sample1/r2.readlen, results/sample1/contigs.len, results/sample1/qc.read1.pdf, results/sample1/qc.read2.pdf, results/sample1/qc.contigs.pdf, results/sample1/qc.readsurv.pdf
+    jobid: 7
+    wildcards: sample=sample1
+
+Submitted job 7 with external jobid 'Submitted batch job 481167'.
+Removing temporary output file results/sample1/r1.readlen.
+Removing temporary output file results/sample1/r2.readlen.
+Removing temporary output file results/sample1/contigs.len.
+[Thu Jul 21 19:08:16 2022]
+Finished job 7.
+2 of 9 steps (22%) done
+[Thu Jul 21 21:17:15 2022]
+Finished job 13.
+3 of 9 steps (33%) done
+
+[Thu Jul 21 21:17:15 2022]
+rule format_hsearch_main:
+    input: results/sample1/dbhits.sans.tsv
+    output: results/sample1/dbhits.srt.tsv, results/sample1/dbhits.top.tsv, results/sample1/contig_taxid_score.tsv
+    log: logs/sample1/format_hsearch_main.log
+    jobid: 9
+    wildcards: sample=sample1
+
+Submitted job 9 with external jobid 'Submitted batch job 481173'.
+[Thu Jul 21 21:17:45 2022]
+Finished job 9.
+4 of 9 steps (44%) done
+
+[Thu Jul 21 21:17:45 2022]
+rule create_reports:
+    input: results/sample1/contigs.fa, results/sample1/contig_taxid_score.tsv, results/sample1/contigs.idxstats, results/sample1/dbhits.top.tsv
+    output: results/sample1/readn_taxid.tsv, results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv, results/sample1/taxprofile.txt, results/sample1/contigs
+    log: logs/sample1/generate_reports.log
+    jobid: 2
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 2 with external jobid 'Submitted batch job 481174'.
+[Thu Jul 21 21:18:15 2022]
+Error in rule create_reports:
+    jobid: 2
+    output: results/sample1/readn_taxid.tsv, results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv, results/sample1/taxprofile.txt, results/sample1/contigs
+    log: logs/sample1/generate_reports.log (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 481174
+
+Error executing rule create_reports on cluster (jobid: 2, external: Submitted batch job 481174, jobscript: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/tmp.lmmatg2w/snakejob.create_reports.2.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-21T190716.579964.snakemake.log

@@ -1,0 +1,75 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	create_reports
+	1	krona_graph
+	1	pack
+	1	summary_excel
+	5
+
+[Fri Jul 22 19:51:06 2022]
+rule create_reports:
+    input: results/sample1/contigs.fa, results/sample1/contig_taxid_score.tsv, results/sample1/contigs.idxstats, results/sample1/dbhits.top.tsv
+    output: results/sample1/readn_taxid.tsv, results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv, results/sample1/taxprofile.txt, results/sample1/contigs
+    log: logs/sample1/generate_reports.log
+    jobid: 2
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 2 with external jobid 'Submitted batch job 481814'.
+[Fri Jul 22 19:51:26 2022]
+Finished job 2.
+1 of 5 steps (20%) done
+
+[Fri Jul 22 19:51:26 2022]
+rule krona_graph:
+    input: results/sample1/abund_table.tsv
+    output: results/sample1/krona_table.tsv, results/sample1/krona_graph.html
+    log: logs/sample1/krona_graph.log
+    jobid: 4
+    wildcards: sample=sample1
+
+Submitted job 4 with external jobid 'Submitted batch job 481815'.
+
+[Fri Jul 22 19:51:26 2022]
+rule summary_excel:
+    input: results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv
+    output: results/sample1/abund_table.xlsx, results/sample1/contigs.annot.xlsx
+    log: logs/sample1/generate_reports_excel.log
+    jobid: 3
+    wildcards: sample=sample1
+
+Submitted job 3 with external jobid 'Submitted batch job 481816'.
+Removing temporary output file results/sample1/krona_table.tsv.
+[Fri Jul 22 19:51:46 2022]
+Finished job 4.
+2 of 5 steps (40%) done
+[Fri Jul 22 19:51:46 2022]
+Finished job 3.
+3 of 5 steps (60%) done
+
+[Fri Jul 22 19:51:46 2022]
+rule pack:
+    input: results/sample1/abund_table.tsv, results/sample1/abund_table.xlsx, results/sample1/contigs.annot.tsv, results/sample1/contigs.annot.xlsx, results/sample1/krona_graph.html, results/sample1/taxprofile.txt, results/sample1/contigs.fa, results/sample1/contigs, results/sample1/ORFs.nt.fa, results/sample1/ORFs.aa.fa, results/sample1/qc.read1.pdf, results/sample1/qc.read2.pdf, results/sample1/qc.contigs.pdf, results/sample1/assembly.stats.tsv
+    output: results/sample1.tar.gz
+    log: logs/sample1/pack.log
+    jobid: 1
+    wildcards: sample=sample1
+
+Submitted job 1 with external jobid 'Submitted batch job 481817'.
+[Fri Jul 22 19:52:17 2022]
+Finished job 1.
+4 of 5 steps (80%) done
+
+[Fri Jul 22 19:52:17 2022]
+localrule all:
+    input: results/sample1.tar.gz
+    jobid: 0
+
+[Fri Jul 22 19:52:17 2022]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-22T195106.732274.snakemake.log

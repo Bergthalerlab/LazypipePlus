@@ -1,0 +1,73 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	assemble
+	1	coverage_plots
+	1	create_reports
+	1	detect_orfs
+	1	filter_hostgen
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	qc_plots
+	1	realign_reads
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	14
+
+[Wed Jul 27 14:51:54 2022]
+rule filter_hostgen:
+    input: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq
+    output: results/sample2/hostgen.sam, results/sample2/hostgen.sam.flt, results/sample2/hostgen.bam, results/sample2/hostgen.sorted.bam, results/sample2/hostgen.readids, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    log: logs/sample2/filter_hostgen.log
+    jobid: 10
+    wildcards: sample=sample2
+    threads: 8
+
+[Wed Jul 27 14:54:32 2022]
+Finished job 10.
+1 of 14 steps (7%) done
+
+[Wed Jul 27 14:54:32 2022]
+rule assemble:
+    input: results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/assembler_out, results/sample2/contigs.fa
+    log: logs/sample2/assemble.log
+    jobid: 6
+    wildcards: sample=sample2
+    threads: 8
+
+[Wed Jul 27 15:01:26 2022]
+Finished job 6.
+2 of 14 steps (14%) done
+
+[Wed Jul 27 15:01:26 2022]
+rule realign_reads:
+    input: results/sample2/contigs.fa, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/contigs.bwa.sam, results/sample2/contigs.top.bam, results/sample2/contigs.idxstats, results/sample2/readid_contigid.tsv
+    log: logs/sample2/realign_reads.log
+    jobid: 12
+    wildcards: sample=sample2
+    threads: 8
+
+Removing temporary output file results/sample2/contigs.bwa.sam.
+Removing temporary output file results/sample2/contigs.top.bam.
+[Wed Jul 27 15:02:49 2022]
+Finished job 12.
+3 of 14 steps (21%) done
+
+[Wed Jul 27 15:02:49 2022]
+rule coverage_plots:
+    input: results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/virosaurus_mapped.sam, results/sample2/virosaurus_mapped_sorted.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.tsv, results/sample2/virosaurus_mapped_sorted_allmap.tsv, results/sample2/coverage.png
+    jobid: 2
+    wildcards: sample=sample2
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/.snakemake/log/2022-07-27T145153.770663.snakemake.log

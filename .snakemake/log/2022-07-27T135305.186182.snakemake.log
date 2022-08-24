@@ -1,0 +1,34 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	assemble
+	1	coverage_plots
+	1	create_reports
+	1	detect_orfs
+	1	filter_hostgen
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	qc_plots
+	1	realign_reads
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	14
+
+[Wed Jul 27 13:53:05 2022]
+rule filter_hostgen:
+    input: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq
+    output: results/sample2/hostgen.sam, results/sample2/hostgen.sam.flt, results/sample2/hostgen.bam, results/sample2/hostgen.sorted.bam, results/sample2/hostgen.readids, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    log: logs/sample2/filter_hostgen.log
+    jobid: 10
+    wildcards: sample=sample2
+    threads: 8
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/.snakemake/log/2022-07-27T135305.186182.snakemake.log

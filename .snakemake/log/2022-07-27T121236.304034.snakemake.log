@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                    count    min threads    max threads
+-------------------  -------  -------------  -------------
+all                        1              1              1
+assemble                   1              2              2
+coverage_plots             1              1              1
+create_reports             1              2              2
+detect_orfs                1              2              2
+filter_hostgen             1              2              2
+format_hsearch_main        1              1              1
+krona_graph                1              1              1
+pack                       1              1              1
+prepro_reads               1              2              2
+qc_plots                   1              1              1
+realign_reads              1              2              2
+sans_orfs                  1              2              2
+stats                      1              1              1
+summary_excel              1              1              1
+total                     15              1              2
+
+
+[Wed Jul 27 12:12:37 2022]
+rule prepro_reads:
+    input: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/R1.fq, /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/R2.fq
+    output: results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq, results/sample2/trimmed_unpaired1.fq, results/sample2/trimmed_unpaired2.fq
+    log: logs/sample2/prepro_reads.log
+    jobid: 5
+    wildcards: sample=sample2
+    threads: 2
+    resources: tmpdir=/tmp
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/.snakemake/log/2022-07-27T121236.304034.snakemake.log

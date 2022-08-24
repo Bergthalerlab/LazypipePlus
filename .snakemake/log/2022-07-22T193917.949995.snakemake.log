@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	create_reports
+	1	krona_graph
+	1	pack
+	1	summary_excel
+	5
+
+[Fri Jul 22 19:39:18 2022]
+rule create_reports:
+    input: results/sample1/contigs.fa, results/sample1/contig_taxid_score.tsv, results/sample1/contigs.idxstats, results/sample1/dbhits.top.tsv
+    output: results/sample1/readn_taxid.tsv, results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv, results/sample1/taxprofile.txt, results/sample1/contigs
+    log: logs/sample1/generate_reports.log
+    jobid: 2
+    wildcards: sample=sample1
+    threads: 2
+
+Submitted job 2 with external jobid 'Submitted batch job 481812'.
+[Fri Jul 22 19:39:48 2022]
+Error in rule create_reports:
+    jobid: 2
+    output: results/sample1/readn_taxid.tsv, results/sample1/abund_table.tsv, results/sample1/contigs.annot.tsv, results/sample1/taxprofile.txt, results/sample1/contigs
+    log: logs/sample1/generate_reports.log (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 481812
+
+Error executing rule create_reports on cluster (jobid: 2, external: Submitted batch job 481812, jobscript: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/tmp.sg9cwjzo/snakejob.create_reports.2.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-22T193917.949995.snakemake.log

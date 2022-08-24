@@ -1,0 +1,48 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	1	assemble
+	1	create_reports
+	1	detect_orfs
+	1	filter_hostgen
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	prepro_reads
+	1	qc_plots
+	1	realign_reads
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	14
+
+[Fri Jul 22 20:01:28 2022]
+rule prepro_reads:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz
+    output: results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq, results/sample2/trimmed_unpaired1.fq, results/sample2/trimmed_unpaired2.fq
+    log: logs/sample2/prepro_reads.log
+    jobid: 12
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 12 with external jobid 'Submitted batch job 481819'.
+[Fri Jul 22 20:02:08 2022]
+Finished job 12.
+1 of 14 steps (7%) done
+
+[Fri Jul 22 20:02:08 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq
+    output: results/sample2/hostgen.sam, results/sample2/hostgen.sam.flt, results/sample2/hostgen.bam, results/sample2/hostgen.sorted.bam, results/sample2/hostgen.readids, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    log: logs/sample2/filter_hostgen.log
+    jobid: 11
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 11 with external jobid 'Submitted batch job 481820'.
+Terminating processes on user request, this might take some time.
+Will exit after finishing currently running jobs.
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-22T200128.539215.snakemake.log

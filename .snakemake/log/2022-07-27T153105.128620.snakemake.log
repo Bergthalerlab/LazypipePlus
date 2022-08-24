@@ -1,0 +1,95 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	coverage_plots
+	1	create_reports
+	1	detect_orfs
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	qc_plots
+	1	sans_orfs
+	1	stats
+	1	summary_excel
+	11
+
+[Wed Jul 27 15:31:05 2022]
+rule coverage_plots:
+    input: results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/virosaurus_mapped.sam, results/sample2/virosaurus_mapped_sorted.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.tsv, results/sample2/virosaurus_mapped_sorted_allmap.tsv
+    log: logs/sample2/coverage_plots.log
+    jobid: 2
+    wildcards: sample=sample2
+    threads: 8
+
+Removing temporary output file results/sample2/virosaurus_mapped_sorted.bam.
+[Wed Jul 27 15:32:26 2022]
+Finished job 2.
+1 of 11 steps (9%) done
+
+[Wed Jul 27 15:32:26 2022]
+rule detect_orfs:
+    input: results/sample2/contigs.fa
+    output: results/sample2/ORFs.raw, results/sample2/ORFs.gtf, results/sample2/ORFs.nt.fa, results/sample2/ORFs.aa.fa
+    log: logs/sample2/detect_orfs.log
+    jobid: 7
+    wildcards: sample=sample2
+    threads: 8
+
+Removing temporary output file results/sample2/ORFs.raw.
+[Wed Jul 27 15:32:29 2022]
+Finished job 7.
+2 of 11 steps (18%) done
+
+[Wed Jul 27 15:32:29 2022]
+rule stats:
+    input: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/fasta_R1.fq.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/contigs.fa, results/sample2/contigs.idxstats, results/sample2/ORFs.nt.fa
+    output: results/sample2/assembly.stats.tsv
+    log: logs/sample2/stats.log
+    jobid: 9
+    wildcards: sample=sample2
+
+[Wed Jul 27 15:32:35 2022]
+Finished job 9.
+3 of 11 steps (27%) done
+
+[Wed Jul 27 15:32:35 2022]
+rule qc_plots:
+    input: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/fasta_R1.fq.gz, /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/fasta_R2.fq.gz, results/sample2/contigs.fa, results/sample2/assembly.stats.tsv
+    output: results/sample2/r1.readlen, results/sample2/r2.readlen, results/sample2/contigs.len, results/sample2/qc.read1.pdf, results/sample2/qc.read2.pdf, results/sample2/qc.contigs.pdf, results/sample2/qc.readsurv.pdf
+    jobid: 8
+    wildcards: sample=sample2
+
+Removing temporary output file results/sample2/r1.readlen.
+Removing temporary output file results/sample2/r2.readlen.
+Removing temporary output file results/sample2/contigs.len.
+[Wed Jul 27 15:32:45 2022]
+Finished job 8.
+4 of 11 steps (36%) done
+
+[Wed Jul 27 15:32:45 2022]
+rule sans_orfs:
+    input: results/sample2/ORFs.aa.fa
+    output: results/sample2/dbhits.sans.tsv
+    log: logs/sample2/sans_orfs.log
+    jobid: 14
+    wildcards: sample=sample2
+    threads: 8
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample2/ORFs.aa.fa -o results/sample2/dbhits.sans.tsv &> logs/sample2/sans_orfs.log
+[Wed Jul 27 15:32:45 2022]
+Error in rule sans_orfs:
+    jobid: 14
+    output: results/sample2/dbhits.sans.tsv
+    log: logs/sample2/sans_orfs.log (check log file(s) for error message)
+    shell:
+        python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample2/ORFs.aa.fa -o results/sample2/dbhits.sans.tsv &> logs/sample2/sans_orfs.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/.snakemake/log/2022-07-27T153105.128620.snakemake.log

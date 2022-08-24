@@ -1,0 +1,5 @@
+Building DAG of jobs...
+InputFunctionException in line 110 of /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/Snakefile:
+KeyError: 'sample3'
+Wildcards:
+sample=sample3

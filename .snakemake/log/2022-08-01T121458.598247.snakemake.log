@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	coverage_plots
+	1	create_reports
+	1	format_hsearch_main
+	1	krona_graph
+	1	pack
+	1	sans_orfs
+	1	summary_excel
+	8
+
+[Mon Aug  1 12:14:58 2022]
+rule coverage_plots:
+    input: results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/virosaurus_mapped.sam, results/sample2/virosaurus_mapped_sorted.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.bam, results/sample2/virosaurus_mapped_sorted_uniquemap.tsv, results/sample2/virosaurus_mapped_sorted_allmap.tsv, results/sample2/coverage_plot.png
+    log: logs/sample2/coverage_plots.log
+    jobid: 2
+    wildcards: sample=sample2
+    threads: 8
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/.snakemake/log/2022-08-01T121458.598247.snakemake.log

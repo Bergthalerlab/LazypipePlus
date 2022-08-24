@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 41 of /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py:
+Missing input files for rule all:
+results/sample2.tar.gz

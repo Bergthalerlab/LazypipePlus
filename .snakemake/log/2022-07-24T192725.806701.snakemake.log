@@ -1,0 +1,548 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job counts:
+	count	jobs
+	1	all
+	3	assemble
+	3	create_reports
+	3	detect_orfs
+	3	filter_hostgen
+	3	format_hsearch_main
+	3	krona_graph
+	3	pack
+	3	qc_plots
+	3	realign_reads
+	3	sans_orfs
+	3	stats
+	3	summary_excel
+	37
+
+[Sun Jul 24 19:27:26 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample3/trimmed_paired1.fq, results/sample3/trimmed_paired2.fq
+    output: results/sample3/hostgen.sam, results/sample3/hostgen.sam.flt, results/sample3/hostgen.bam, results/sample3/hostgen.sorted.bam, results/sample3/hostgen.readids, results/sample3/trimmed_paired1_hostflt.fq, results/sample3/trimmed_paired2_hostflt.fq
+    log: logs/sample3/filter_hostgen.log
+    jobid: 31
+    wildcards: sample=sample3
+    threads: 2
+
+Submitted job 31 with external jobid 'Submitted batch job 482453'.
+
+[Sun Jul 24 19:27:26 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired2.fq
+    output: results/sample2/hostgen.sam, results/sample2/hostgen.sam.flt, results/sample2/hostgen.bam, results/sample2/hostgen.sorted.bam, results/sample2/hostgen.readids, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    log: logs/sample2/filter_hostgen.log
+    jobid: 27
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 27 with external jobid 'Submitted batch job 482454'.
+
+[Sun Jul 24 19:27:26 2022]
+rule filter_hostgen:
+    input: /nobackup/lab_bergthaler/pipelines/lazypipe/lazypipe/data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz, results/sample4/trimmed_paired1.fq, results/sample4/trimmed_paired2.fq
+    output: results/sample4/hostgen.sam, results/sample4/hostgen.sam.flt, results/sample4/hostgen.bam, results/sample4/hostgen.sorted.bam, results/sample4/hostgen.readids, results/sample4/trimmed_paired1_hostflt.fq, results/sample4/trimmed_paired2_hostflt.fq
+    log: logs/sample4/filter_hostgen.log
+    jobid: 35
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 35 with external jobid 'Submitted batch job 482455'.
+Removing temporary output file results/sample3/hostgen.sam.
+Removing temporary output file results/sample3/hostgen.sam.flt.
+Removing temporary output file results/sample3/hostgen.bam.
+Removing temporary output file results/sample3/hostgen.sorted.bam.
+[Sun Jul 24 19:29:26 2022]
+Finished job 31.
+1 of 37 steps (3%) done
+
+[Sun Jul 24 19:29:26 2022]
+rule assemble:
+    input: results/sample3/trimmed_paired1_hostflt.fq, results/sample3/trimmed_paired2_hostflt.fq
+    output: results/sample3/assembler_out, results/sample3/contigs.fa
+    log: logs/sample3/assemble.log
+    jobid: 14
+    wildcards: sample=sample3
+    threads: 2
+
+Removing temporary output file results/sample4/hostgen.sam.
+Removing temporary output file results/sample4/hostgen.sam.flt.
+Removing temporary output file results/sample4/hostgen.bam.
+Removing temporary output file results/sample4/hostgen.sorted.bam.
+[Sun Jul 24 19:29:26 2022]
+Finished job 35.
+2 of 37 steps (5%) done
+Submitted job 14 with external jobid 'Submitted batch job 482456'.
+
+[Sun Jul 24 19:29:26 2022]
+rule assemble:
+    input: results/sample4/trimmed_paired1_hostflt.fq, results/sample4/trimmed_paired2_hostflt.fq
+    output: results/sample4/assembler_out, results/sample4/contigs.fa
+    log: logs/sample4/assemble.log
+    jobid: 21
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 21 with external jobid 'Submitted batch job 482457'.
+Removing temporary output file results/sample2/hostgen.sam.
+Removing temporary output file results/sample2/hostgen.sam.flt.
+Removing temporary output file results/sample2/hostgen.bam.
+Removing temporary output file results/sample2/hostgen.sorted.bam.
+[Sun Jul 24 19:31:06 2022]
+Finished job 27.
+3 of 37 steps (8%) done
+
+[Sun Jul 24 19:31:06 2022]
+rule assemble:
+    input: results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/assembler_out, results/sample2/contigs.fa
+    log: logs/sample2/assemble.log
+    jobid: 7
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 7 with external jobid 'Submitted batch job 482458'.
+[Sun Jul 24 19:34:57 2022]
+Finished job 21.
+4 of 37 steps (11%) done
+
+[Sun Jul 24 19:34:57 2022]
+rule detect_orfs:
+    input: results/sample4/contigs.fa
+    output: results/sample4/ORFs.raw, results/sample4/ORFs.gtf, results/sample4/ORFs.nt.fa, results/sample4/ORFs.aa.fa
+    log: logs/sample4/detect_orfs.log
+    jobid: 22
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 22 with external jobid 'Submitted batch job 482459'.
+
+[Sun Jul 24 19:34:57 2022]
+rule realign_reads:
+    input: results/sample4/contigs.fa, results/sample4/trimmed_paired1_hostflt.fq, results/sample4/trimmed_paired2_hostflt.fq
+    output: results/sample4/contigs.bwa.sam, results/sample4/contigs.top.bam, results/sample4/contigs.idxstats, results/sample4/readid_contigid.tsv
+    log: logs/sample4/realign_reads.log
+    jobid: 34
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 34 with external jobid 'Submitted batch job 482460'.
+Removing temporary output file results/sample4/ORFs.raw.
+[Sun Jul 24 19:35:07 2022]
+Finished job 22.
+5 of 37 steps (14%) done
+
+[Sun Jul 24 19:35:07 2022]
+rule sans_orfs:
+    input: results/sample4/ORFs.aa.fa
+    output: results/sample4/dbhits.sans.tsv
+    log: logs/sample4/sans_orfs.log
+    jobid: 39
+    wildcards: sample=sample4
+    threads: 2
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample4/ORFs.aa.fa -o results/sample4/dbhits.sans.tsv &> logs/sample4/sans_orfs.log
+Submitted job 39 with external jobid 'Submitted batch job 482461'.
+[Sun Jul 24 19:35:17 2022]
+Finished job 14.
+6 of 37 steps (16%) done
+
+[Sun Jul 24 19:35:17 2022]
+rule detect_orfs:
+    input: results/sample3/contigs.fa
+    output: results/sample3/ORFs.raw, results/sample3/ORFs.gtf, results/sample3/ORFs.nt.fa, results/sample3/ORFs.aa.fa
+    log: logs/sample3/detect_orfs.log
+    jobid: 15
+    wildcards: sample=sample3
+    threads: 2
+
+Submitted job 15 with external jobid 'Submitted batch job 482462'.
+
+[Sun Jul 24 19:35:17 2022]
+rule realign_reads:
+    input: results/sample3/contigs.fa, results/sample3/trimmed_paired1_hostflt.fq, results/sample3/trimmed_paired2_hostflt.fq
+    output: results/sample3/contigs.bwa.sam, results/sample3/contigs.top.bam, results/sample3/contigs.idxstats, results/sample3/readid_contigid.tsv
+    log: logs/sample3/realign_reads.log
+    jobid: 30
+    wildcards: sample=sample3
+    threads: 2
+
+Submitted job 30 with external jobid 'Submitted batch job 482463'.
+Removing temporary output file results/sample3/ORFs.raw.
+[Sun Jul 24 19:35:57 2022]
+Finished job 15.
+7 of 37 steps (19%) done
+
+[Sun Jul 24 19:35:57 2022]
+rule sans_orfs:
+    input: results/sample3/ORFs.aa.fa
+    output: results/sample3/dbhits.sans.tsv
+    log: logs/sample3/sans_orfs.log
+    jobid: 38
+    wildcards: sample=sample3
+    threads: 2
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample3/ORFs.aa.fa -o results/sample3/dbhits.sans.tsv &> logs/sample3/sans_orfs.log
+Submitted job 38 with external jobid 'Submitted batch job 482464'.
+Removing temporary output file results/sample4/contigs.bwa.sam.
+Removing temporary output file results/sample4/contigs.top.bam.
+[Sun Jul 24 19:36:07 2022]
+Finished job 34.
+8 of 37 steps (22%) done
+
+[Sun Jul 24 19:36:07 2022]
+rule stats:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_4_S121378/TW02_4_S121378_ecco_1.fq.gz, results/sample4/trimmed_paired1.fq, results/sample4/trimmed_paired1_hostflt.fq, results/sample4/contigs.fa, results/sample4/contigs.idxstats, results/sample4/ORFs.nt.fa
+    output: results/sample4/assembly.stats.tsv
+    log: logs/sample4/stats.log
+    jobid: 24
+    wildcards: sample=sample4
+
+Submitted job 24 with external jobid 'Submitted batch job 482465'.
+[Sun Jul 24 19:36:27 2022]
+Finished job 24.
+9 of 37 steps (24%) done
+
+[Sun Jul 24 19:36:27 2022]
+rule qc_plots:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_4_S121378/TW02_4_S121378_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_4_S121378/TW02_4_S121378_ecco_1.fq.gz, results/sample4/contigs.fa, results/sample4/assembly.stats.tsv
+    output: results/sample4/r1.readlen, results/sample4/r2.readlen, results/sample4/contigs.len, results/sample4/qc.read1.pdf, results/sample4/qc.read2.pdf, results/sample4/qc.contigs.pdf, results/sample4/qc.readsurv.pdf
+    jobid: 23
+    wildcards: sample=sample4
+
+Submitted job 23 with external jobid 'Submitted batch job 482466'.
+Removing temporary output file results/sample3/contigs.bwa.sam.
+Removing temporary output file results/sample3/contigs.top.bam.
+[Sun Jul 24 19:36:47 2022]
+Finished job 30.
+10 of 37 steps (27%) done
+Removing temporary output file results/sample4/r1.readlen.
+Removing temporary output file results/sample4/r2.readlen.
+Removing temporary output file results/sample4/contigs.len.
+[Sun Jul 24 19:36:47 2022]
+Finished job 23.
+11 of 37 steps (30%) done
+
+[Sun Jul 24 19:36:47 2022]
+rule stats:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_3_S121375/TW02_3_S121375_ecco_1.fq.gz, results/sample3/trimmed_paired1.fq, results/sample3/trimmed_paired1_hostflt.fq, results/sample3/contigs.fa, results/sample3/contigs.idxstats, results/sample3/ORFs.nt.fa
+    output: results/sample3/assembly.stats.tsv
+    log: logs/sample3/stats.log
+    jobid: 17
+    wildcards: sample=sample3
+
+Submitted job 17 with external jobid 'Submitted batch job 482467'.
+[Sun Jul 24 19:37:27 2022]
+Finished job 17.
+12 of 37 steps (32%) done
+
+[Sun Jul 24 19:37:27 2022]
+rule qc_plots:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_3_S121375/TW02_3_S121375_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_3_S121375/TW02_3_S121375_ecco_1.fq.gz, results/sample3/contigs.fa, results/sample3/assembly.stats.tsv
+    output: results/sample3/r1.readlen, results/sample3/r2.readlen, results/sample3/contigs.len, results/sample3/qc.read1.pdf, results/sample3/qc.read2.pdf, results/sample3/qc.contigs.pdf, results/sample3/qc.readsurv.pdf
+    jobid: 16
+    wildcards: sample=sample3
+
+Submitted job 16 with external jobid 'Submitted batch job 482468'.
+Removing temporary output file results/sample3/r1.readlen.
+Removing temporary output file results/sample3/r2.readlen.
+Removing temporary output file results/sample3/contigs.len.
+[Sun Jul 24 19:37:57 2022]
+Finished job 16.
+13 of 37 steps (35%) done
+[Sun Jul 24 19:39:57 2022]
+Finished job 39.
+14 of 37 steps (38%) done
+
+[Sun Jul 24 19:39:57 2022]
+rule format_hsearch_main:
+    input: results/sample4/dbhits.sans.tsv
+    output: results/sample4/dbhits.srt.tsv, results/sample4/dbhits.top.tsv, results/sample4/contig_taxid_score.tsv
+    log: logs/sample4/format_hsearch_main.log
+    jobid: 33
+    wildcards: sample=sample4
+
+Submitted job 33 with external jobid 'Submitted batch job 482469'.
+[Sun Jul 24 19:40:07 2022]
+Finished job 33.
+15 of 37 steps (41%) done
+
+[Sun Jul 24 19:40:07 2022]
+rule create_reports:
+    input: results/sample4/contigs.fa, results/sample4/contig_taxid_score.tsv, results/sample4/contigs.idxstats, results/sample4/dbhits.top.tsv
+    output: results/sample4/readn_taxid.tsv, results/sample4/abund_table.tsv, results/sample4/contigs.annot.tsv, results/sample4/taxprofile.txt, results/sample4/contigs
+    log: logs/sample4/generate_reports.log
+    jobid: 18
+    wildcards: sample=sample4
+    threads: 2
+
+Submitted job 18 with external jobid 'Submitted batch job 482470'.
+[Sun Jul 24 19:40:27 2022]
+Finished job 7.
+16 of 37 steps (43%) done
+[Sun Jul 24 19:40:27 2022]
+Finished job 18.
+17 of 37 steps (46%) done
+
+[Sun Jul 24 19:40:27 2022]
+rule realign_reads:
+    input: results/sample2/contigs.fa, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/trimmed_paired2_hostflt.fq
+    output: results/sample2/contigs.bwa.sam, results/sample2/contigs.top.bam, results/sample2/contigs.idxstats, results/sample2/readid_contigid.tsv
+    log: logs/sample2/realign_reads.log
+    jobid: 26
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 26 with external jobid 'Submitted batch job 482471'.
+
+[Sun Jul 24 19:40:27 2022]
+rule detect_orfs:
+    input: results/sample2/contigs.fa
+    output: results/sample2/ORFs.raw, results/sample2/ORFs.gtf, results/sample2/ORFs.nt.fa, results/sample2/ORFs.aa.fa
+    log: logs/sample2/detect_orfs.log
+    jobid: 8
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 8 with external jobid 'Submitted batch job 482472'.
+
+[Sun Jul 24 19:40:27 2022]
+rule summary_excel:
+    input: results/sample4/abund_table.tsv, results/sample4/contigs.annot.tsv
+    output: results/sample4/abund_table.xlsx, results/sample4/contigs.annot.xlsx
+    log: logs/sample4/generate_reports_excel.log
+    jobid: 19
+    wildcards: sample=sample4
+
+Submitted job 19 with external jobid 'Submitted batch job 482473'.
+
+[Sun Jul 24 19:40:27 2022]
+rule krona_graph:
+    input: results/sample4/abund_table.tsv
+    output: results/sample4/krona_table.tsv, results/sample4/krona_graph.html
+    log: logs/sample4/krona_graph.log
+    jobid: 20
+    wildcards: sample=sample4
+
+Submitted job 20 with external jobid 'Submitted batch job 482474'.
+Removing temporary output file results/sample2/ORFs.raw.
+[Sun Jul 24 19:40:47 2022]
+Finished job 8.
+18 of 37 steps (49%) done
+
+[Sun Jul 24 19:40:47 2022]
+rule sans_orfs:
+    input: results/sample2/ORFs.aa.fa
+    output: results/sample2/dbhits.sans.tsv
+    log: logs/sample2/sans_orfs.log
+    jobid: 37
+    wildcards: sample=sample2
+    threads: 2
+
+python3.10 SANSPANZ.3/runsanspanz.py -m SANStopHtaxid --SANS_H 5 -R  -i results/sample2/ORFs.aa.fa -o results/sample2/dbhits.sans.tsv &> logs/sample2/sans_orfs.log
+Removing temporary output file results/sample4/krona_table.tsv.
+[Sun Jul 24 19:40:47 2022]
+Finished job 20.
+19 of 37 steps (51%) done
+Submitted job 37 with external jobid 'Submitted batch job 482475'.
+[Sun Jul 24 19:40:57 2022]
+Finished job 38.
+20 of 37 steps (54%) done
+
+[Sun Jul 24 19:40:57 2022]
+rule format_hsearch_main:
+    input: results/sample3/dbhits.sans.tsv
+    output: results/sample3/dbhits.srt.tsv, results/sample3/dbhits.top.tsv, results/sample3/contig_taxid_score.tsv
+    log: logs/sample3/format_hsearch_main.log
+    jobid: 29
+    wildcards: sample=sample3
+
+[Sun Jul 24 19:40:57 2022]
+Finished job 19.
+21 of 37 steps (57%) done
+Submitted job 29 with external jobid 'Submitted batch job 482476'.
+
+[Sun Jul 24 19:40:57 2022]
+rule pack:
+    input: results/sample4/abund_table.tsv, results/sample4/abund_table.xlsx, results/sample4/contigs.annot.tsv, results/sample4/contigs.annot.xlsx, results/sample4/krona_graph.html, results/sample4/taxprofile.txt, results/sample4/contigs.fa, results/sample4/contigs, results/sample4/ORFs.nt.fa, results/sample4/ORFs.aa.fa, results/sample4/qc.read1.pdf, results/sample4/qc.read2.pdf, results/sample4/qc.contigs.pdf, results/sample4/assembly.stats.tsv
+    output: results/sample4.tar.gz
+    log: logs/sample4/pack.log
+    jobid: 3
+    wildcards: sample=sample4
+
+Submitted job 3 with external jobid 'Submitted batch job 482477'.
+[Sun Jul 24 19:41:07 2022]
+Finished job 29.
+22 of 37 steps (59%) done
+[Sun Jul 24 19:41:07 2022]
+Finished job 3.
+23 of 37 steps (62%) done
+
+[Sun Jul 24 19:41:07 2022]
+rule create_reports:
+    input: results/sample3/contigs.fa, results/sample3/contig_taxid_score.tsv, results/sample3/contigs.idxstats, results/sample3/dbhits.top.tsv
+    output: results/sample3/readn_taxid.tsv, results/sample3/abund_table.tsv, results/sample3/contigs.annot.tsv, results/sample3/taxprofile.txt, results/sample3/contigs
+    log: logs/sample3/generate_reports.log
+    jobid: 11
+    wildcards: sample=sample3
+    threads: 2
+
+Submitted job 11 with external jobid 'Submitted batch job 482478'.
+[Sun Jul 24 19:41:27 2022]
+Finished job 11.
+24 of 37 steps (65%) done
+
+[Sun Jul 24 19:41:27 2022]
+rule summary_excel:
+    input: results/sample3/abund_table.tsv, results/sample3/contigs.annot.tsv
+    output: results/sample3/abund_table.xlsx, results/sample3/contigs.annot.xlsx
+    log: logs/sample3/generate_reports_excel.log
+    jobid: 12
+    wildcards: sample=sample3
+
+Submitted job 12 with external jobid 'Submitted batch job 482479'.
+
+[Sun Jul 24 19:41:27 2022]
+rule krona_graph:
+    input: results/sample3/abund_table.tsv
+    output: results/sample3/krona_table.tsv, results/sample3/krona_graph.html
+    log: logs/sample3/krona_graph.log
+    jobid: 13
+    wildcards: sample=sample3
+
+Submitted job 13 with external jobid 'Submitted batch job 482480'.
+Removing temporary output file results/sample3/krona_table.tsv.
+[Sun Jul 24 19:41:47 2022]
+Finished job 13.
+25 of 37 steps (68%) done
+[Sun Jul 24 19:41:57 2022]
+Finished job 12.
+26 of 37 steps (70%) done
+
+[Sun Jul 24 19:41:57 2022]
+rule pack:
+    input: results/sample3/abund_table.tsv, results/sample3/abund_table.xlsx, results/sample3/contigs.annot.tsv, results/sample3/contigs.annot.xlsx, results/sample3/krona_graph.html, results/sample3/taxprofile.txt, results/sample3/contigs.fa, results/sample3/contigs, results/sample3/ORFs.nt.fa, results/sample3/ORFs.aa.fa, results/sample3/qc.read1.pdf, results/sample3/qc.read2.pdf, results/sample3/qc.contigs.pdf, results/sample3/assembly.stats.tsv
+    output: results/sample3.tar.gz
+    log: logs/sample3/pack.log
+    jobid: 2
+    wildcards: sample=sample3
+
+Submitted job 2 with external jobid 'Submitted batch job 482481'.
+[Sun Jul 24 19:42:27 2022]
+Finished job 2.
+27 of 37 steps (73%) done
+Removing temporary output file results/sample2/contigs.bwa.sam.
+Removing temporary output file results/sample2/contigs.top.bam.
+[Sun Jul 24 19:43:07 2022]
+Finished job 26.
+28 of 37 steps (76%) done
+
+[Sun Jul 24 19:43:07 2022]
+rule stats:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz, results/sample2/trimmed_paired1.fq, results/sample2/trimmed_paired1_hostflt.fq, results/sample2/contigs.fa, results/sample2/contigs.idxstats, results/sample2/ORFs.nt.fa
+    output: results/sample2/assembly.stats.tsv
+    log: logs/sample2/stats.log
+    jobid: 10
+    wildcards: sample=sample2
+
+Submitted job 10 with external jobid 'Submitted batch job 482482'.
+[Sun Jul 24 19:43:17 2022]
+Finished job 10.
+29 of 37 steps (78%) done
+
+[Sun Jul 24 19:43:17 2022]
+rule qc_plots:
+    input: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz, /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/SarsVirSeq2/results_pipeline/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz, results/sample2/contigs.fa, results/sample2/assembly.stats.tsv
+    output: results/sample2/r1.readlen, results/sample2/r2.readlen, results/sample2/contigs.len, results/sample2/qc.read1.pdf, results/sample2/qc.read2.pdf, results/sample2/qc.contigs.pdf, results/sample2/qc.readsurv.pdf
+    jobid: 9
+    wildcards: sample=sample2
+
+Submitted job 9 with external jobid 'Submitted batch job 482483'.
+Removing temporary output file results/sample2/r1.readlen.
+Removing temporary output file results/sample2/r2.readlen.
+Removing temporary output file results/sample2/contigs.len.
+[Sun Jul 24 19:43:58 2022]
+Finished job 9.
+30 of 37 steps (81%) done
+[Sun Jul 24 19:45:38 2022]
+Finished job 37.
+31 of 37 steps (84%) done
+
+[Sun Jul 24 19:45:38 2022]
+rule format_hsearch_main:
+    input: results/sample2/dbhits.sans.tsv
+    output: results/sample2/dbhits.srt.tsv, results/sample2/dbhits.top.tsv, results/sample2/contig_taxid_score.tsv
+    log: logs/sample2/format_hsearch_main.log
+    jobid: 25
+    wildcards: sample=sample2
+
+Submitted job 25 with external jobid 'Submitted batch job 482484'.
+[Sun Jul 24 19:45:48 2022]
+Finished job 25.
+32 of 37 steps (86%) done
+
+[Sun Jul 24 19:45:48 2022]
+rule create_reports:
+    input: results/sample2/contigs.fa, results/sample2/contig_taxid_score.tsv, results/sample2/contigs.idxstats, results/sample2/dbhits.top.tsv
+    output: results/sample2/readn_taxid.tsv, results/sample2/abund_table.tsv, results/sample2/contigs.annot.tsv, results/sample2/taxprofile.txt, results/sample2/contigs
+    log: logs/sample2/generate_reports.log
+    jobid: 4
+    wildcards: sample=sample2
+    threads: 2
+
+Submitted job 4 with external jobid 'Submitted batch job 482485'.
+[Sun Jul 24 19:46:18 2022]
+Finished job 4.
+33 of 37 steps (89%) done
+
+[Sun Jul 24 19:46:18 2022]
+rule summary_excel:
+    input: results/sample2/abund_table.tsv, results/sample2/contigs.annot.tsv
+    output: results/sample2/abund_table.xlsx, results/sample2/contigs.annot.xlsx
+    log: logs/sample2/generate_reports_excel.log
+    jobid: 5
+    wildcards: sample=sample2
+
+Submitted job 5 with external jobid 'Submitted batch job 482486'.
+
+[Sun Jul 24 19:46:18 2022]
+rule krona_graph:
+    input: results/sample2/abund_table.tsv
+    output: results/sample2/krona_table.tsv, results/sample2/krona_graph.html
+    log: logs/sample2/krona_graph.log
+    jobid: 6
+    wildcards: sample=sample2
+
+Submitted job 6 with external jobid 'Submitted batch job 482487'.
+Removing temporary output file results/sample2/krona_table.tsv.
+[Sun Jul 24 19:46:48 2022]
+Finished job 6.
+34 of 37 steps (92%) done
+[Sun Jul 24 19:46:58 2022]
+Finished job 5.
+35 of 37 steps (95%) done
+
+[Sun Jul 24 19:46:58 2022]
+rule pack:
+    input: results/sample2/abund_table.tsv, results/sample2/abund_table.xlsx, results/sample2/contigs.annot.tsv, results/sample2/contigs.annot.xlsx, results/sample2/krona_graph.html, results/sample2/taxprofile.txt, results/sample2/contigs.fa, results/sample2/contigs, results/sample2/ORFs.nt.fa, results/sample2/ORFs.aa.fa, results/sample2/qc.read1.pdf, results/sample2/qc.read2.pdf, results/sample2/qc.contigs.pdf, results/sample2/assembly.stats.tsv
+    output: results/sample2.tar.gz
+    log: logs/sample2/pack.log
+    jobid: 1
+    wildcards: sample=sample2
+
+Submitted job 1 with external jobid 'Submitted batch job 482488'.
+[Sun Jul 24 19:47:28 2022]
+Finished job 1.
+36 of 37 steps (97%) done
+
+[Sun Jul 24 19:47:28 2022]
+localrule all:
+    input: results/sample2.tar.gz, results/sample3.tar.gz, results/sample4.tar.gz
+    jobid: 0
+
+[Sun Jul 24 19:47:28 2022]
+Finished job 0.
+37 of 37 steps (100%) done
+Complete log: /nobackup/lab_bergthaler/2022_MPX_evolution/run_BSF_1193_000000000-KFFF9/lazypipe/.snakemake/log/2022-07-24T192725.806701.snakemake.log

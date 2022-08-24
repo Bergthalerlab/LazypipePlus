@@ -1,0 +1,3 @@
+NameError in line 130 of /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py:
+name 'sample' is not defined
+  File "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py", line 130, in <module>

@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 78 of /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py:
+Missing input files for rule filter_hostgen:
+$data/hostgen/GCA_000001405.29_GRCh38.p14_genomic.fna.gz

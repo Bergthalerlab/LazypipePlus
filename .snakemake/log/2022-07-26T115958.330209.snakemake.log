@@ -1,0 +1,6 @@
+Migrating .snakemake folder to new format...
+Migration complete
+Building DAG of jobs...
+MissingInputException in line 45 of /home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/Snakefile.py:
+Missing input files for rule prepro_reads:
+/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/datain/TW02_2_S121376/TW02_2_S121376_ecco_1.fq.gz
