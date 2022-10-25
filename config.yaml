@@ -11,8 +11,8 @@ datain:
 hostgen_sm:             
     sample2:  "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/data/GCA_000001405.29_GRCh38.p14_genomic.fna.gz"   # H. sapiens
  
-
-virosaurus_fasta: "/home/ptriska/Desktop/metagenomics/MPX_experiment/lazypipe/virosaurus_fasta/virosaurus90_vertebrate-20200330.fas.gz"
+# location of virosaurus reference fasta file and indexes
+virosaurus_fasta: "/nobackup/lab_bergthaler/metagenomics/virosaurus_fasta/virosaurus90_vertebrate-20200330.fas.gz"
 
 hostgen_taxid_sm:                            # assign reads mapped to hostgen to this taxid in abundance est
     sample2:            9606
