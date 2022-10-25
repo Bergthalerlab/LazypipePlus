@@ -108,6 +108,7 @@ rule filter_hostgen:
         shell("cat {output.sam_flt} | cut -f1 | sort -T {params.wrkdir} | uniq 1> {output.readids} 2>> {log}")
         shell("bin/filtfq -1 {input.read1} -2 {input.read2} -o {output.read1} -O {output.read2} -f {output.readids} -m filter -v &>> {log}")
 
+# this rule aligns reads to the virousaurus reference and produces coverage plots
 rule coverage_plots:
 	input:
 		fasta1       = config["res"]+"/{sample}/trimmed_paired1_hostflt.fq",
